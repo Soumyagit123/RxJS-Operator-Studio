@@ -35,9 +35,6 @@ export class ThemeService {
     try {
       const saved = localStorage.getItem('rxjs_app_theme');
       if (saved === 'dark' || saved === 'light') return saved;
-      if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-        return 'light';
-      }
     } catch {
       // Fallback
     }
