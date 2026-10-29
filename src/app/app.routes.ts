@@ -1,8 +1,16 @@
 import { Routes } from '@angular/router';
+import { authGuard, guestGuard } from './core/auth/auth.guard';
 
 export const routes: Routes = [
   {
+    path: 'login',
+    canActivate: [guestGuard],
+    loadComponent: () => import('./features/auth/login/login.component').then(m => m.LoginComponent),
+    title: 'Sign In — RxJS Operator Studio'
+  },
+  {
     path: '',
+    canActivate: [authGuard],
     loadComponent: () => import('./core/layout/app-shell/app-shell.component').then(m => m.AppShellComponent),
     children: [
       {
@@ -72,3 +80,4 @@ export const routes: Routes = [
     ]
   }
 ];
+
